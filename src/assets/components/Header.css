@@ -1,0 +1,30 @@
+.menu>ul {
+    display: flex;
+    justify-content: center;
+}
+
+.menu li {
+    width: 200px;
+    text-align: center;
+    list-style: none;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    margin: 6px;
+}
+
+.menu>ul li a {
+    display: block;
+    padding: 16px 10px 10px 10px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 3em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.menu li a:hover {
+    background: #363636;
+    color: #F5F5F5;
+    box-shadow: 1px 5px 10px -5px black;
+    transition: all 0.2s ease;
+}

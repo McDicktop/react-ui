@@ -1,0 +1,71 @@
+.table {
+    margin-left: 5px;
+    border-collapse: collapse;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
+  }
+  
+  .table th {
+    background: #313030;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid #393737;
+  }
+  
+  .table td {
+    padding: 3px 5px;
+    border: 1px solid #393737;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 200px;
+    min-width: 164px;
+  }
+  
+  
+  .sortBtn {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('../img/arrow-down.png');
+    background-size: cover;
+    cursor: pointer;
+    opacity: .4;
+  }
+  
+  .sortBtn:hover {
+    opacity: 1;
+  }
+  
+  .sortselected {
+    opacity: 1;
+    border: 1px solid green;
+    border-radius: 25%;
+  }
+  
+  .decSort {
+    margin-top: 3px;
+    float: right;
+  }
+  
+  .ascSort {
+    transform: rotateZ(180deg);
+    margin-top: 4px;
+    float: right;
+  }
+  
+  .selectedRow {
+    border: 2px solid green;
+  }
+  
+  
+  body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(24, 24, 23);
+    color: rgb(170, 170, 160);
+    font-size: 20px;
+  }

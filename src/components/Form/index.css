@@ -3,14 +3,16 @@
     padding: 10px;
     background-color: rgb(72, 71, 71);
     color: rgb(187, 187, 187);
+
+    font-family: "Noto Serif", serif;
 }
 
-.input_wrapper{
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-start;
-} 
+.input_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
 
 .input_style {
     height: 20px;
@@ -19,18 +21,20 @@
     border: 1px solid rgb(0, 0, 0);
     padding-left: 4px;
     outline: none;
+
+    font-family: "Noto Serif", serif;
 }
 
 .hide_btn {
     background-image: url('./img/visible.png');
     background-repeat: no-repeat;
-    background-size: contain;      
+    background-size: contain;
     background-color: transparent;
     position: relative;
     top: -27px;
     left: 152px;
     height: 18px;
-    width: 18px; 
+    width: 18px;
     padding: 0;
     cursor: pointer;
     border: none;
@@ -38,7 +42,7 @@
 }
 
 .visible {
-    background-image: url('./img/invisible.png'); 
+    background-image: url('./img/invisible.png');
 }
 
 #submit_btn {

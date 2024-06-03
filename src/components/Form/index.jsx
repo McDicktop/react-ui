@@ -2,9 +2,8 @@ import { useState } from "react";
 import "./index.css";
 import { validateEmail, validateName, validatePass } from "../../utils";
 import CryptoJS from "crypto-js";
-// import "dotenv/config";
 
-// const KEY = process.env.REACT_APP_KEY;
+const KEY = import.meta.env.VITE_REACT_APP_KEY;
 
 function handleChange(user, setUser, key, value) {
     setUser({ ...user, [key]: value });
@@ -13,26 +12,25 @@ function handleChange(user, setUser, key, value) {
 function handleSubmit(e, user) {
     e.preventDefault();
 
-    let k = true;
-    if (!validateName(user.name)) {
-        console.log("Invalid user name");
-        k = false;
+    const userTemp = { ...user };
+
+    let allValid = true;
+
+    function validate(arg, argStr, fn) {
+        if (!fn(arg)) {
+            console.log(`Invalid user ${argStr}`);
+            allValid = false;
+        }
     }
-    if (!validateName(user.surname)) {
-        console.log("Invalid user surname");
-        k = false;
-    }
-    if (!validateEmail(user.email)) {
-        console.log("Invalid user email");
-        k = false;
-    }
-    if (!validatePass(user.pass)) {
-        console.log("Invalid user password");
-        k = false;
-    }
-    if (k) {
-        // user.pass = CryptoJS.AES.encrypt(user.pass, KEY).toString();
-        console.log(user);
+
+    validate(userTemp.name, "name", validateName);
+    validate(userTemp.surname, "surname", validateName);
+    validate(userTemp.email, "email", validateEmail);
+    validate(userTemp.pass, "pass", validatePass);
+
+    if (allValid) {
+        userTemp.pass = CryptoJS.AES.encrypt(userTemp.pass, KEY).toString();
+        console.log(userTemp);
     }
 }
 
@@ -47,12 +45,7 @@ const Form = function () {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
-        <form
-            className="form"
-            onSubmit={(e) => {
-                handleSubmit(e, user);
-            }}
-        >
+        <form className="form" onSubmit={(e) => handleSubmit(e, user)}>
             <div className="input_wrapper">
                 <label htmlFor="name_sighup">Name</label>
                 <input
@@ -61,9 +54,9 @@ const Form = function () {
                     placeholder="Enter name"
                     id="name_signup"
                     value={user.name}
-                    onChange={(e) => {
-                        handleChange(user, setUser, "name", e.target.value);
-                    }}
+                    onChange={(e) =>
+                        handleChange(user, setUser, "name", e.target.value)
+                    }
                 />
             </div>
 
@@ -75,9 +68,9 @@ const Form = function () {
                     placeholder="Enter surname"
                     id="surname_signup"
                     value={user.surname}
-                    onChange={(e) => {
-                        handleChange(user, setUser, "surname", e.target.value);
-                    }}
+                    onChange={(e) =>
+                        handleChange(user, setUser, "surname", e.target.value)
+                    }
                 />
             </div>
 
@@ -89,9 +82,9 @@ const Form = function () {
                     placeholder="Enter email"
                     id="email_signup"
                     value={user.email}
-                    onChange={(e) => {
-                        handleChange(user, setUser, "email", e.target.value);
-                    }}
+                    onChange={(e) =>
+                        handleChange(user, setUser, "email", e.target.value)
+                    }
                 />
             </div>
 
@@ -103,9 +96,9 @@ const Form = function () {
                     placeholder="Enter password"
                     id="pass_signup"
                     value={user.pass}
-                    onChange={(e) => {
-                        handleChange(user, setUser, "pass", e.target.value);
-                    }}
+                    onChange={(e) =>
+                        handleChange(user, setUser, "pass", e.target.value)
+                    }
                 />
                 <button
                     className="hide_btn"
