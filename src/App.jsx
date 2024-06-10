@@ -4,6 +4,8 @@ import axios from "axios";
 import Form from "./components/Form";
 import Table from "./components/Table";
 import Button from "./components/Button";
+import Mocktable from "./components/Mocktable";
+import GalleryMock from "./components/Gallery";
 
 // const baseUrl = "https://665ad7a0003609eda45efd13.mockapi.io/";
 
@@ -51,7 +53,10 @@ function App() {
         <>
             {/* <Button></Button>
             <Form></Form> */}
-            <Table></Table>
+            {/* <Table></Table> */}
+            {/* <Mocktable /> */}
+
+            <GalleryMock />
         </>
     );
 }

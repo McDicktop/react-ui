@@ -1,9 +1,5 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* #root {
+
 
 .logo {
   height: 6em;
@@ -31,12 +27,31 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
+} */
+
+
+
+
+
+
+/* .form_container{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(25, 25, 25, 0.292);
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+form{
+  width: 200px;
+  height: 260px;
+  background-color: white;
+} */

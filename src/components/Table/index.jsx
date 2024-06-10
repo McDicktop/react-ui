@@ -10,6 +10,7 @@ const Table = function () {
         JSON.parse(localStorage.getItem("filter")) ?? {
             short: false,
             query: "",
+            reverse: false,
         }
     );
 
@@ -24,6 +25,10 @@ const Table = function () {
 
     async function queryHandler(value) {
         await setFilter({ ...filter, query: value });
+    }
+
+    async function reverseHandler() {
+        await setFilter({ ...filter, reverse: !filter.reverse });
     }
 
     function filterString(el, query) {
@@ -76,7 +81,13 @@ const Table = function () {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th
+                            onClick={async () => {
+                                await reverseHandler();
+                            }}
+                        >
+                            Id {filter.reverse ? "⬇️" : "⬆️"}
+                        </th>
                         <th>Name</th>
                         <th>Surname</th>
                         <th>E-Mail</th>
@@ -85,23 +96,32 @@ const Table = function () {
                 </thead>
 
                 <tbody id="tbody">
-                    {users.map((el, index) => {
+                    {users.reduce((acc, current, index) => {
+                        const returns = (
+                            <tr key={`user_${index}`}>
+                                <td>{current.id}</td>
+                                <td>{current.name}</td>
+                                <td>{current.surname}</td>
+                                <td>{current.email}</td>
+                                <td>{current.date}</td>
+                            </tr>
+                        );
+
                         if (
                             ((filter.short && index < 10) || !filter.short) &&
-                            ((filter.query && filterString(el, filter.query)) ||
+                            ((filter.query &&
+                                filterString(current, filter.query)) ||
                                 !filter.query)
                         ) {
-                            return (
-                                <tr key={`user_${index}`}>
-                                    <td>{el.id}</td>
-                                    <td>{el.name}</td>
-                                    <td>{el.surname}</td>
-                                    <td>{el.email}</td>
-                                    <td>{el.date}</td>
-                                </tr>
-                            );
+                            if (filter.reverse) {
+                                acc.unshift(returns);
+                            } else {
+                                acc.push(returns);
+                            }
                         }
-                    })}
+
+                        return acc;
+                    }, [])}
                 </tbody>
             </table>
         </>
