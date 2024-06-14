@@ -6,6 +6,7 @@ import Table from "./components/Table";
 import Button from "./components/Button";
 import Mocktable from "./components/Mocktable";
 import GalleryMock from "./components/Gallery";
+import MyRef from "./components/Ref";
 
 // const baseUrl = "https://665ad7a0003609eda45efd13.mockapi.io/";
 
@@ -56,6 +57,7 @@ function App() {
             {/* <Table></Table> */}
             {/* <Mocktable /> */}
 
+            {/* <MyRef /> */}
             <GalleryMock />
         </>
     );
