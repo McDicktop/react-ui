@@ -245,7 +245,12 @@ background-size: 70%; */
 
 .saved_mark{
     position: absolute;
-    bottom: 14px;
-    left: 10px;
-
+    bottom: 4px;
+    left: 4px;
+    width: 44px;
+    height: 44px;
+    background-image: url('./img/saved.png');
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: 60%;
 }
