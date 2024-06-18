@@ -2,26 +2,13 @@ import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import SavedHandler from "./SaveHandler";
+import SavedHandler from "./SavedHandler";
 import GalleryContent from "./GalleryContent";
 import ImgView from "./ImgView";
-import { saveToLocalStorage } from "../../utils";
-// import { clearStorage } from "../../utils";
+import { saveToLocalStorage, clearStorage } from "../../utils";
 import { openViewImg, closeViewImg } from "../../utils";
 
 const URL = "https://666340f262966e20ef0c113d.mockapi.io/";
-
-let storage = JSON.parse(localStorage.getItem("data")) ?? [];
-
-function clearStorage(isFiltered, setIsFiltered, reset, setReset, checkBox) {
-    localStorage.clear();
-    storage = JSON.parse(localStorage.getItem("data")) ?? [];
-
-    if (isFiltered) {
-        checkBox.current.checked = false;
-        setIsFiltered(!isFiltered);
-    } else setReset(!reset);
-}
 
 const GalleryMock = function () {
     const [data, setData] = useState([]),
@@ -30,6 +17,9 @@ const GalleryMock = function () {
         [isFiltered, setIsFiltered] = useState(false),
         [isImgSaved, setIsImgSaved] = useState(false),
         [reset, setReset] = useState(false),
+        [storage, setStorage] = useState(
+            JSON.parse(localStorage.getItem("data")) ?? []
+        ),
         checkBox = useRef();
 
     async function getData() {
@@ -58,7 +48,9 @@ const GalleryMock = function () {
                         setIsFiltered,
                         reset,
                         setReset,
-                        checkBox
+                        checkBox,
+                        storage,
+                        setStorage
                     )
                 }
                 filter={() => setIsFiltered(!isFiltered)}
@@ -68,17 +60,15 @@ const GalleryMock = function () {
             />
 
             <GalleryContent
+                openViewImg={(e) =>
+                    openViewImg(isViewImg, setIsViewImg, setImgItem, e)
+                }
                 filter={isFiltered}
                 imgs={isFiltered ? storage : data}
-                openViewImg={(el) =>
-                    openViewImg(isViewImg, setIsViewImg, setImgItem, el)
-                }
                 storage={storage}
             />
             {isViewImg && (
                 <ImgView
-                    imgs={isFiltered ? storage : data}
-                    imgItem={imgItem}
                     closeViewImg={(e) =>
                         closeViewImg(isViewImg, setIsViewImg, e)
                     }
@@ -87,16 +77,15 @@ const GalleryMock = function () {
                             imgItem,
                             isImgSaved,
                             setIsImgSaved,
-                            storage
+                            storage,
+                            setStorage
                         )
                     }
-                    handleImageItem={(item) => {
-                        setImgItem(item);
-                    }}
-                    handleIsView={() => {
-                        setIsViewImg(!isViewImg);
-                    }}
+                    handleImageItem={(item) => setImgItem(item)}
+                    handleIsView={() => setIsViewImg(!isViewImg)}
                     storage={storage}
+                    imgs={isFiltered ? storage : data}
+                    imgItem={imgItem}
                 />
             )}
         </>

@@ -1,12 +1,14 @@
-const ImgView = function (props) {
-    let index = props.imgs.findIndex((el) => el.id === props.imgItem.id);
+import PropTypes from 'prop-types';
+
+const ImgView = function ({ closeViewImg, saveToLocalStorage, handleImageItem, handleIsView, storage, imgs, imgItem }) {
+    let index = imgs.findIndex((el) => el.id === imgItem.id);
 
     return (
-        <div className="view_gallery" onClick={(e) => props.closeViewImg(e)}>
+        <div className="view_gallery" onClick={(e) => closeViewImg(e)}>
             <div className="img_container">
                 <img
                     className="img_style"
-                    src={props.imgItem.image}
+                    src={imgItem.image}
                     alt="image"
                 />
 
@@ -14,7 +16,7 @@ const ImgView = function (props) {
                     className="img_btn"
                     id="closeBtn"
                     onClick={() => {
-                        props.handleIsView();
+                        handleIsView();
                         document.body.classList.toggle("scroll_disable");
                     }}
                 ></button>
@@ -24,41 +26,41 @@ const ImgView = function (props) {
                         className="img_btn"
                         id="leftBtn"
                         onClick={() =>
-                            props.handleImageItem(props.imgs[index - 1])
+                            handleImageItem(imgs[index - 1])
                         }
                     ></button>
                 )}
 
-                {index < props.imgs.length - 1 && (
+                {index < imgs.length - 1 && (
                     <button
                         className="img_btn"
                         id="rightBtn"
                         onClick={() =>
-                            props.handleImageItem(props.imgs[index + 1])
+                            handleImageItem(imgs[index + 1])
                         }
                     ></button>
                 )}
 
                 <div className="img_description">
-                    <p>{props.imgItem.name}</p>
+                    <p>{imgItem.name}</p>
                     <p>
-                        {props.imgItem.city} - {props.imgItem.country}
+                        {imgItem.city} - {imgItem.country}
                     </p>
                 </div>
 
                 <div className="buttons_wrapper">
                     <button
                         disabled={
-                            props.storage.filter(
-                                (el) => el.id === props.imgItem.id
+                            storage.filter(
+                                (el) => el.id === imgItem.id
                             ).length === 1
                         }
                         className="save_btn btn"
                         id="saveBtn"
-                        onClick={() => props.saveToLocalStorage()}
+                        onClick={() => saveToLocalStorage()}
                     >
-                        {props.storage.filter(
-                            (el) => el.id === props.imgItem.id
+                        {storage.filter(
+                            (el) => el.id === imgItem.id
                         ).length === 1
                             ? "Saved"
                             : "Save"}
@@ -68,7 +70,7 @@ const ImgView = function (props) {
                         className="cancel_btn btn"
                         id="cancelBtn"
                         onClick={() => {
-                            props.handleIsView();
+                            handleIsView();
                             document.body.classList.toggle("scroll_disable");
                         }}
                     >
@@ -79,5 +81,15 @@ const ImgView = function (props) {
         </div>
     );
 };
+
+ImgView.propTypes = {
+    closeViewImg: PropTypes.func.isRequired,
+    saveToLocalStorage: PropTypes.func.isRequired,
+    handleImageItem: PropTypes.func.isRequired,
+    handleIsView: PropTypes.func.isRequired,
+    storage: PropTypes.array.isRequired,
+    imgs: PropTypes.array.isRequired,
+    imgItem: PropTypes.object.isRequired
+}
 
 export default ImgView;

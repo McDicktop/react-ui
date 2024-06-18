@@ -1,18 +1,19 @@
-const GalleryContent = function (props) {
-    console.log(props.storage);
+import PropTypes from "prop-types";
+
+const GalleryContent = function ({ openViewImg, filter, imgs, storage }) {
     return (
         <div className="grid_gallery">
-            {props.imgs.map((el, ind) => {
+            {imgs.map((el, ind) => {
                 return (
                     <div key={`index_${ind}`} className="image_gallery">
                         <img
                             src={el.image}
                             alt="image_view"
-                            onClick={() => props.openViewImg(el)}
+                            onClick={() => openViewImg(el)}
                         />
-                        {!props.filter &&
-                        props.storage.filter((item) => item.id === el.id)
-                            .length === 1 ? (
+                        {!filter &&
+                        storage.filter((item) => item.id === el.id).length ===
+                            1 ? (
                             <div className="saved_mark"></div>
                         ) : (
                             <></>
@@ -22,6 +23,13 @@ const GalleryContent = function (props) {
             })}
         </div>
     );
+};
+
+GalleryContent.propTypes = {
+    openViewImg: PropTypes.func.isRequired,
+    filter: PropTypes.bool.isRequired,
+    imgs: PropTypes.array.isRequired,
+    storage: PropTypes.array.isRequired,
 };
 
 export default GalleryContent;
