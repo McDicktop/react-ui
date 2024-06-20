@@ -56,7 +56,7 @@ const GalleryMock = function () {
                 filter={() => setIsFiltered(!isFiltered)}
                 inputRef={checkBox}
                 checkboxText={"SAVED"}
-                buttonText={"CLEAR GALLERY"}
+                buttonText={"CLEAR"}
             />
 
             <GalleryContent

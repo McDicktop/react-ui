@@ -9,14 +9,17 @@ const SavedHandler = function ({
 }) {
     return (
         <div className="buttons_wrapper">
-            <input
-                ref={inputRef}
-                type="checkbox"
-                id="check"
-                className="saved"
-                onClick={() => filter()}
-            />
-            <label htmlFor="check">{checkboxText}</label>
+            <div style={{ width: "85.91px" }}></div>
+            <div className="check_wrapper">
+                <input
+                    ref={inputRef}
+                    type="checkbox"
+                    id="check"
+                    className="saved"
+                    onClick={() => filter()}
+                />
+                <label htmlFor="check">{checkboxText}</label>
+            </div>
             <button className="saved_img" onClick={() => handleClearStorage()}>
                 {buttonText}
             </button>

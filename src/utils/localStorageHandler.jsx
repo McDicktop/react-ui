@@ -1,14 +1,19 @@
-export function saveToLocalStorage(
+export async function saveToLocalStorage(
     item,
     isImgSaved,
     setIsImgSaved,
     storage,
     setStorage
 ) {
+    console.log(!storage.filter((el) => el.id === item.id).length);
+
     if (!storage.filter((el) => el.id === item.id).length) {
-        setStorage((prev) => [...prev, item]);
-        localStorage.setItem("data", JSON.stringify(storage));
-        setIsImgSaved(!isImgSaved);
+        localStorage.setItem("data", JSON.stringify([...storage, item]));
+
+        await setStorage((prev) => {
+            return [...prev, item];
+        });
+        await setIsImgSaved(!isImgSaved);
     }
 }
 

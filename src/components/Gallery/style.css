@@ -1,17 +1,23 @@
 body.scroll_disable {
     overflow: hidden;
+    padding-right: 16px;
+}
+
+
+body.scroll_safari {
+    padding-right: 0px !important;
 }
 
 
 .grid_gallery {
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-    columns: 18rem;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    columns: 16rem;
     gap: 1rem;
     counter-reset: grid;
-    width: 80vw;
-    max-width: 1200px;
+    width: 90vw;
+    max-width: 2100px;
     margin: 0 auto;
-    padding: 2rem 0px;
+    padding: 0 0 2rem 0;
 }
 
 .image_gallery img {
@@ -85,8 +91,10 @@ body.scroll_disable {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 12px;
+
+    padding: 24px 5vw;
 }
 
 .buttons_wrapper>.btn {
@@ -183,11 +191,29 @@ body.scroll_disable {
     border-radius: 20px;
 }
 
+.check_wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+
+    width: fit-content;
+}
+
 .saved {
     border: 2px solid black;
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
+
+}
+
+.saved ~ label {
+    color: rgb(229, 229, 229);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: normal;
+    font-family: sans-serif;
 }
 
 .btn:disabled {
@@ -197,9 +223,14 @@ body.scroll_disable {
 
 .saved_img {
     height: 34px;
-    margin: 4px;
+    /* margin: 4px; */
     font-weight: bold;
     cursor: pointer;
+
+    border-radius: 12px;
+    border: none;
+
+    padding: 6px 20px;
 }
 
 .saved_mark {
